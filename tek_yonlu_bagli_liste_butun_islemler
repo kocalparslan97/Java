@@ -1,0 +1,124 @@
+package calisma;
+
+import java.util.Scanner;
+
+class kisi {
+
+    String ad;
+    kisi next;
+
+    kisi(String ad) {
+        this.ad = ad;
+        next = null;
+    }
+
+}
+
+class liste {
+
+    kisi head;
+    kisi tail;
+
+    void liste() {
+        head = tail = null;
+    }
+
+    void basa_ekle(String yeni) {
+        kisi a = new kisi(yeni);
+        if (head == null) {
+            head = tail = a;
+        } else {
+            a.next = head;
+            head = a;
+        }
+    }
+
+    void sona_ekle(String yeni) {
+        kisi a = new kisi(yeni);
+        if (head == null) {
+            head = tail = a;
+        } else {
+            tail.next = a;
+            tail = a;
+        }
+
+    }
+
+    void ortaya_ekle(String yeni, String eski) {
+        kisi b = new kisi(yeni);
+        kisi a = new kisi(eski);
+        kisi tmp = head;
+        while (tmp.next != null) {
+
+            if (tmp.ad == a.ad) {
+                b.next = tmp.next;
+                tmp.next = b;
+                break;
+            }
+            tmp = tmp.next;
+
+        }
+
+    }
+
+    void bastan_sil() {
+        head = head.next;
+
+    }
+
+    void sondan_sil() {
+
+        kisi tmp = head, once = null;
+
+        once = null;
+        while (tmp != tail) {
+            once = tmp;
+            tmp = tmp.next;
+        }
+
+        once.next = null;
+        tail = once;
+
+    }
+    void ortadan_sil(String sil){
+        kisi a=new kisi(sil);
+        kisi tmp=head,once=null;
+        
+        while(tmp.ad!=a.ad){
+            once=tmp;
+            tmp=tmp.next;
+        }
+        once.next=tmp.next;
+        a.next=null;
+    }
+
+    String listele() {
+        kisi tmp = head;
+        String s = "";
+        while (tmp != null) {
+            s += "--->" + tmp.ad + "\t  ";
+
+            tmp = tmp.next;
+        }
+        return s;
+    }
+
+}
+
+public class Calisma {
+
+    public static void main(String[] args) {
+        liste b = new liste();
+        String p[] = {"ali", "veli", "son", "orta", "deli"};
+
+        b.basa_ekle(p[0]);
+        b.basa_ekle(p[1]);
+
+        b.sona_ekle(p[2]);
+       b.ortaya_ekle(p[3], "ali");
+        b.ortadan_sil("ali");
+        System.out.println(b.listele());
+
+    }
+
+}
