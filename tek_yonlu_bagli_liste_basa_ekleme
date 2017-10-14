@@ -1,0 +1,61 @@
+package deneme;
+
+import java.util.Scanner;
+
+public class Deneme{
+     
+        static bagliListe l=new bagliListe();
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        for (int i = 0; i < 3; i++) {
+            System.out.print("Ad gir : ");
+            String ad=s.next();
+            System.out.print("Soyad gir : ");
+            String soyad=s.next();
+            ogrenci o = new ogrenci(ad,soyad);
+            l.basa_ekle(o);
+        } 
+        System.out.println("Listenin son hali\n\n"+l.listele());
+    }
+}
+
+class ogrenci{
+    String isim,soyisim;
+    ogrenci ileri;
+    
+    ogrenci(String isim,String soyisim){
+        this.isim=isim;
+        this.soyisim=soyisim;
+        ileri=null;
+    }
+    
+}
+class bagliListe{
+   
+    ogrenci bas,son;
+    
+    void liste(){
+        bas=son=null;
+    }
+    void basa_ekle(ogrenci yeni){
+         if (bas==null) {
+            bas=son=yeni;
+        }
+         else{
+             yeni.ileri=bas;
+             bas=yeni;
+         }
+    }
+    String listele(){
+        ogrenci tmp=bas;
+        String s="";
+        while(tmp!=null){
+            s+=tmp.isim+" ";
+            s+=tmp.soyisim+"\n";
+            tmp=tmp.ileri;
+        }
+        return s;
+    }
+}
+
+ 
