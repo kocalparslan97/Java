@@ -1,0 +1,109 @@
+package calisma;
+
+class eleman{
+    int veri;
+    eleman next;
+    eleman prev;
+    
+    eleman(int veri){
+        this.veri=veri;
+        next=prev=null;
+    }
+    
+}
+class liste{
+    eleman head;
+    eleman tail;
+    
+    liste(){
+        head=tail=null;
+    }
+    void basa_ekle(int veri){
+        eleman a=new eleman(veri);
+        if(head==null)
+            head=tail=a;
+        else{
+            head.prev=a;
+            a.next=head;
+            head=a;
+        }
+        
+    }
+    void sona_ekle(int veri){
+        eleman a=new eleman(veri);
+        
+        if(head==null)
+            head=tail=a;
+        else{
+            tail.next=a;
+            a.prev=tail;
+            tail=a;
+        }
+    }
+    void ortaya_ekle(int veri,int onceki){
+        eleman a=new eleman(veri);
+        eleman b=new eleman(onceki);
+        
+        eleman tmp=head;
+        
+        while(tmp!=null){
+            if(tmp.veri==b.veri){
+                
+                break;
+            }
+            tmp=tmp.next;
+        }
+        a.next=tmp.next;
+        tmp.next.prev=a;
+        a.prev=tmp;
+        tmp.next=a;
+    }
+    void bas_sil(){
+        head=head.next;
+        head.prev=null;
+    }
+    void son_sil(){
+        tail=tail.prev;
+        tail.next=null;
+    }
+    void orta_sil(int veri){
+        eleman a=new eleman(veri);
+        eleman tmp=head;
+        while(tmp!=null){
+            if(tmp.veri==a.veri){
+                break;
+            }
+            tmp=tmp.next;
+        }
+        tmp.prev.next=tmp.next;
+        tmp.next.prev=tmp.prev;
+                
+    }
+    void listele(){
+        eleman tmp=head;
+        
+        while(tmp!=null){
+            
+            System.out.print("--->"+tmp.veri+"   ");
+            tmp=tmp.next;
+        }
+        
+    }
+    
+}
+
+public class ders {
+    public static void main(String[] args) {
+        liste a=new liste();
+        
+        a.basa_ekle(5);
+        a.basa_ekle(4);
+        a.sona_ekle(7);
+        a.ortaya_ekle(6, 5);
+        a.ortaya_ekle(100, 5);
+        a.bas_sil();
+        a.son_sil();
+        a.orta_sil(100);
+        a.listele();
+    }
+}
