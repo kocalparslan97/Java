@@ -1,0 +1,63 @@
+package calisma;
+
+class eleman{
+int icerik;
+public eleman(int icerik){
+    this.icerik=icerik;
+}
+}
+class yigit{
+    int dizi[];
+    int top;
+    int maxSize;
+    public yigit(int maxSize){
+        dizi=new int[maxSize];
+        this.maxSize=maxSize;
+        top=-1;
+    }
+    int goster(){
+        return dizi[top];
+    }
+    boolean isEmpty(){
+        if(top==-1)
+            return true;
+        else
+            return false;
+       
+    }
+    boolean isFull(){
+        if(top==maxSize--)
+            return true;
+        else
+            return false;
+    }
+    void push(int icerik){
+        if(!isFull())
+            top++;
+        dizi[top]=icerik;
+    }
+    int pop(){
+        top--;
+        return dizi[top+1];
+    }
+}
+public class stack{
+   
+    
+    public static void main(String[] args) {
+        yigit a=new yigit(5);
+       
+        a.push(5);
+        a.push(4);
+        a.push(3);
+        a.pop();
+        a.push(3);
+        a.push(2);
+        a.push(1);
+        
+       while(!a.isEmpty()){
+            int b=a.goster();
+            System.out.println("   -->  "+b);
+            a.pop();
+    }
+}}
