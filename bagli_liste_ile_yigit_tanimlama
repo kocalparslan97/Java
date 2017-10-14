@@ -1,0 +1,57 @@
+package calisma;
+
+public class baglistack {
+
+    public static void main(String[] args) {
+   bagli_yigit a=new bagli_yigit();
+   a.push(5);
+   a.push(6);
+   a.push(7);
+   a.pop();
+   a.goster();
+    }
+}
+class sayi{
+    sayi next;
+    int veri;
+    
+    public sayi(int veri){
+        this.veri=veri;
+        this.next=null;
+    }
+}
+
+class bagli_yigit{
+    sayi top;
+    
+    public bagli_yigit(){
+        top=null;
+    }
+    boolean isEmpty(){
+        if(top==null)
+            return true;
+        else
+            return false;
+    }
+    void push(int veri){
+        sayi a=new sayi(veri);
+        a.next=top;
+        top=a;
+        
+    }
+    void pop(){
+        
+        top=top.next;
+        
+    }
+    void  goster(){
+        
+      sayi tmp=top;
+      while(tmp!=null){
+          System.out.print("--->"+tmp.veri);
+          tmp=tmp.next;
+      }
+        
+        
+    }
+}
